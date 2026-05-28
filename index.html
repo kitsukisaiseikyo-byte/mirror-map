@@ -1337,6 +1337,12 @@ document.getElementById('btn-uncheck-only').addEventListener('click', function()
 
 // ─── GPS ─────────────────────────────────────────────
 
+// GPS 用パネルをミラーマーカー（z:600）より前面に配置
+map.createPane('gpsPane');
+map.getPane('gpsPane').style.zIndex = 700;
+map.createPane('gpsCirclePane');
+map.getPane('gpsCirclePane').style.zIndex = 695;
+
 let gpsActive = false;
 let gpsWatchId = null;
 let gpsCircle = null;
@@ -1375,11 +1381,12 @@ gpsBtn.addEventListener('click', function() {
           gpsMarker.setLatLng([lat, lng]);
         } else {
           gpsMarker = L.circleMarker([lat, lng], {
-            radius: 8,
+            pane: 'gpsPane',
+            radius: 9,
             color: '#1565c0',
             fillColor: '#42a5f5',
-            fillOpacity: 0.9,
-            weight: 2,
+            fillOpacity: 0.95,
+            weight: 2.5,
           }).addTo(map);
         }
         if (gpsCircle) {
@@ -1387,6 +1394,7 @@ gpsBtn.addEventListener('click', function() {
           gpsCircle.setRadius(acc);
         } else {
           gpsCircle = L.circle([lat, lng], {
+            pane: 'gpsCirclePane',
             radius: acc,
             color: '#42a5f5',
             fillColor: '#90caf9',
