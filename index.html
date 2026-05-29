@@ -950,15 +950,6 @@ const osmTile = makeTile('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
 });
 
-// Esri 衛星写真（無料・APIキー不要）
-const esriSatTile = makeTile(
-  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  {
-    attribution: 'Tiles © Esri — Source: Esri, Maxar, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN',
-    maxZoom: 19,
-  }
-);
-
 // 国土地理院 航空写真（日本国内・高精細）
 const gsiPhotoTile = makeTile(
   'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',
@@ -1434,7 +1425,6 @@ gpsBtn.addEventListener('click', function() {
 
 const baseLayers = {
   'OpenStreetMap': osmTile,
-  '衛星写真 (Esri)': esriSatTile,
   '航空写真 (国土地理院)': gsiPhotoTile,
   '標準地図 (国土地理院)': gsiStdTile,
 };
